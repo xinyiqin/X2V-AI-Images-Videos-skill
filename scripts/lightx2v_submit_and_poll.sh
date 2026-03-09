@@ -1,10 +1,41 @@
 #!/usr/bin/env bash
 # LightX2V: submit task, poll until done, print result URL.
-# Usage: submit_and_poll.sh <task> <model_cls> <prompt> [--aspect-ratio RATIO] [--input-image PATH|URL [...]] [--input-audio PATH] [--input-video PATH]
-#        Multiple --input-image for I2I multi-image; single or multiple supported.
+# Usage: submit_and_poll.sh <task> <model_cls> <prompt> [--aspect-ratio RATIO] [--input-image PATH|URL [...]] [--input-last-frame PATH|URL] [--input-audio PATH] [--input-video PATH]
+#        Multiple --input-image for I2I multi-image. For flf2v: --input-image FIRST_FRAME --input-last-frame LAST_FRAME.
 # Env: LIGHTX2V_CLOUD_URL (default https://x2v.light-ai.top), LIGHTX2V_CLOUD_TOKEN (optional; required for cloud)
 
 set -e
+
+# Auto-load from openclaw.json when env not set (avoids re-typing token every time)
+if [ -z "${LIGHTX2V_CLOUD_TOKEN}" ]; then
+  OPENCLAW_CFG="${OPENCLAW_CONFIG:-$HOME/.openclaw/openclaw.json}"
+  if [ -f "$OPENCLAW_CFG" ]; then
+    if command -v jq &>/dev/null; then
+      export LIGHTX2V_CLOUD_TOKEN=$(jq -r '.skills.entries["lightx2v"].env.LIGHTX2V_CLOUD_TOKEN // empty' "$OPENCLAW_CFG")
+      _url=$(jq -r '.skills.entries["lightx2v"].env.LIGHTX2V_CLOUD_URL // empty' "$OPENCLAW_CFG")
+      [ -n "$_url" ] && export LIGHTX2V_CLOUD_URL="$_url"
+    else
+      export LIGHTX2V_CLOUD_TOKEN=$(python3 -c "
+import json,sys
+try:
+    with open(sys.argv[1]) as f: d=json.load(f)
+    e=d.get('skills',{}).get('entries',{}).get('lightx2v',{}).get('env',{})
+    print(e.get('LIGHTX2V_CLOUD_TOKEN','') or '')
+except Exception: pass
+" "$OPENCLAW_CFG")
+      _url=$(python3 -c "
+import json,sys
+try:
+    with open(sys.argv[1]) as f: d=json.load(f)
+    e=d.get('skills',{}).get('entries',{}).get('lightx2v',{}).get('env',{})
+    print(e.get('LIGHTX2V_CLOUD_URL','') or '')
+except Exception: pass
+" "$OPENCLAW_CFG")
+      [ -n "$_url" ] && export LIGHTX2V_CLOUD_URL="$_url"
+    fi
+  fi
+fi
+
 BASE_URL="${LIGHTX2V_CLOUD_URL:-https://x2v.light-ai.top}"
 BASE_URL="${BASE_URL%/}"
 TOKEN="${LIGHTX2V_CLOUD_TOKEN:-}"
@@ -16,21 +47,23 @@ PROMPT="$3"
 shift 3 || true
 ASPECT_RATIO=""
 INPUT_IMAGE_ARR=()
+INPUT_LAST_FRAME=""
 INPUT_AUDIO=""
 INPUT_VIDEO=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --aspect-ratio) ASPECT_RATIO="$2"; shift 2 ;;
-    --input-image)  INPUT_IMAGE_ARR+=("$2"); shift 2 ;;
-    --input-audio)  INPUT_AUDIO="$2";  shift 2 ;;
-    --input-video)  INPUT_VIDEO="$2";  shift 2 ;;
+    --aspect-ratio)     ASPECT_RATIO="$2"; shift 2 ;;
+    --input-image)      INPUT_IMAGE_ARR+=("$2"); shift 2 ;;
+    --input-last-frame) INPUT_LAST_FRAME="$2"; shift 2 ;;
+    --input-audio)      INPUT_AUDIO="$2";  shift 2 ;;
+    --input-video)      INPUT_VIDEO="$2";  shift 2 ;;
     *) echo "Unknown option: $1" >&2; exit 1 ;;
   esac
 done
 
 if [ -z "$TASK" ] || [ -z "$MODEL_CLS" ]; then
-  echo "Usage: submit_and_poll.sh <task> <model_cls> <prompt> [--aspect-ratio RATIO] [--input-image PATH|URL [--input-image PATH|URL ...]] [--input-audio PATH] [--input-video PATH]" >&2
+  echo "Usage: submit_and_poll.sh <task> <model_cls> <prompt> [--aspect-ratio RATIO] [--input-image PATH|URL [...]] [--input-last-frame PATH|URL] [--input-audio PATH] [--input-video PATH]" >&2
   exit 1
 fi
 
@@ -127,6 +160,10 @@ fi
 if [ -n "$INPUT_VIDEO" ]; then
   VID_JSON=$(payload_image "$INPUT_VIDEO")
   [ "$VID_JSON" != "null" ] && BODY="$BODY,\"input_video\":$VID_JSON"
+fi
+if [ -n "$INPUT_LAST_FRAME" ]; then
+  LAST_JSON=$(payload_image "$INPUT_LAST_FRAME")
+  [ "$LAST_JSON" != "null" ] && BODY="$BODY,\"input_last_frame\":$LAST_JSON"
 fi
 BODY="$BODY}"
 

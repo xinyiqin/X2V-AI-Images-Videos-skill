@@ -1,22 +1,41 @@
-# OpenClaw LightX2V Skill
+# 🎬 LightX2V — Free AI Image & Video Skill
 
-> [LightX2V](https://x2v.light-ai.top) integration for [OpenClaw](https://openclaw.ai) — image generation (t2i/i2i), video (t2v/i2v/s2v), TTS, and voice clone via cloud API.
+**中文说明:** [README_zh.md](README_zh.md)
 
-## Features
+> **Free** AI image, video, TTS, and voice clone — use it for **full AI comic drama**, **AI MV**, **AI digital-human voiceover**, or deploy on [OpenClaw](https://openclaw.ai) as a **virtual boyfriend/girlfriend**. Powered by the open-source [LightX2V](https://github.com/ModelTC/LightX2V) free API; try the cloud at [x2v.light-ai.top](https://x2v.light-ai.top).
 
-- **Image** — Text-to-image (t2i), image editing (i2i)
-- **Video** — Text-to-video (t2v), image-to-video (i2v), digital human / talking head (s2v)
-- **TTS** — Text-to-speech with preset voices
-- **Voice clone** — Clone voice from audio, then synthesize with the cloned voice
+## ✨ Features
 
-Use this skill for **cloud** API; for adult/restricted content or local inference, use **lightx2v-local** instead.
+- 🖼️ **Image** — Text-to-image (t2i), image editing (i2i)
+- 🎞️ **Video** — Text-to-video (t2v), image-to-video (i2v), digital human / talking head (s2v), first–last frame (flf2v)
+- 🎤 **TTS** — Text-to-speech with preset voices
+- 🎙️ **Voice clone** — Clone a voice from audio, then synthesize with it
 
-## Requirements
+Use this skill for the **cloud** API. For restricted content or local unlimited inference, self-host by deploying models using [LightX2V](https://github.com/ModelTC/LightX2V) locally and running it as a service.
+
+## 📋 Supported models (cloud)
+
+Available via `GET /api/v1/model/list`. Use the `model_cls` value when submitting tasks:
+
+| Task | model_cls |
+|------|-----------|
+| **t2i** (text-to-image) | `Qwen-Image-Edit-2509`, `Qwen-Image-2512` |
+| **i2i** (image edit) | `Qwen-Image-Edit-2509`, `Qwen-Image-Edit-2511` |
+| **t2v** (text-to-video) | `Wan2.2_T2V_A14B_distilled` |
+| **i2v** (image-to-video) | `Wan2.2_I2V_A14B_distilled` |
+| **s2v** (digital human) | `SekoTalk` |
+| **flf2v** (first-last frame) | `Wan2.2_I2V_A14B_distilled` |
+| **animate** | `wan2.2_animate` |
+
+TTS and voice clone use separate endpoints (see SKILL.md); no `model_cls` needed.
+
+## 📌 Requirements
 
 - [OpenClaw](https://openclaw.ai) installed and configured
-- LightX2V cloud access token (from https://x2v.light-ai.top)
+- LightX2V cloud access token from [x2v.light-ai.top](https://x2v.light-ai.top)
+- Free tier: 100 task submissions per day
 
-## Install
+## 🚀 Install
 
 ### Install from source (git + install.sh)
 
@@ -28,7 +47,7 @@ cd lightx2v_ai_generation_skills
 
 The installer will copy the skill to your OpenClaw workspace and prompt for your cloud token (optional at install time; you can set it later in `openclaw.json`).
 
-## Configuration
+## ⚙️ Configuration
 
 Set in `~/.openclaw/openclaw.json` under `skills.entries.lightx2v.env` (or in the environment):
 
@@ -53,9 +72,11 @@ Example:
 }
 ```
 
+**Auto-load:** The scripts (e.g. `lightx2v_submit_and_poll.sh`, `tts_generate.sh`) read `LIGHTX2V_CLOUD_TOKEN` and `LIGHTX2V_CLOUD_URL` from `~/.openclaw/openclaw.json` when they are not already set in the environment, so you do not need to `export` them in the shell every time. Configure once in openclaw.json and run the scripts directly.
+
 Ensure `lightx2v` is in `skills.allow` if you use an allowlist.
 
-## Usage
+## 💡 Usage
 
 After installation, the OpenClaw agent can use the skill to:
 
@@ -63,9 +84,17 @@ After installation, the OpenClaw agent can use the skill to:
 - Generate videos (t2v, i2v, digital human s2v)
 - Generate speech (TTS) or clone a voice from an audio sample
 
-All operations go through the cloud API; use **lightx2v-local** when you need local execution or content that may be restricted on the cloud.
+## 📚 Complex case examples
 
-## Uninstall
+Step-by-step guides for multi-step workflows (e.g. digital-human-video, storyboard-video, my_boyfriend):
+
+| Example | Description | Doc |
+|--------|-------------|-----|
+| 🎞️ **First–last frame (flf2v)** | First frame (t2i or user image) → i2i last frame → flf2v → short transition video | [first-last-frame-video.md](examples/first-last-frame-video.md) |
+| 🎬 **Digital human video** | Scene image + TTS → s2v → talking-head video | [digital-human-video.md](examples/digital-human-video.md) |
+| 🎥 **One-sentence to video** | t2i/i2i → one key image → i2v → short video | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
+
+## 🗑️ Uninstall
 
 Remove the skill directory and the `lightx2v` entry from `openclaw.json`:
 
@@ -73,6 +102,6 @@ Remove the skill directory and the `lightx2v` entry from `openclaw.json`:
 rm -rf ~/.openclaw/workspace/skills/lightx2v
 # Then edit ~/.openclaw/openclaw.json to remove skills.entries.lightx2v and lightx2v from skills.allow
 ```
-## License
+## 📄 License
 
 MIT
