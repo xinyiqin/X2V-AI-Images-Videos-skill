@@ -18,25 +18,7 @@ Use this skill for **cloud** API; for adult/restricted content or local inferenc
 
 ## Install
 
-### Option A: Install via ClawHub (recommended)
-
-The skill is published on [ClawHub](https://clawhub.ai), install with:
-
-```bash
-npx clawhub@latest install lightx2v
-```
-
-Or with the ClawHub CLI installed globally:
-
-```bash
-npm i -g clawhub
-clawhub login   # one-time
-clawhub install lightx2v
-```
-
-This installs the skill into your OpenClaw workspace `skills` folder. Then set `LIGHTX2V_CLOUD_TOKEN` in `openclaw.json` (see Configuration).
-
-### Option B: Install from source (git + install.sh)
+### Install from source (git + install.sh)
 
 ```bash
 git clone https://github.com/xinyiqin/lightx2v_ai_generation_skills.git
