@@ -1,4 +1,4 @@
-# 🎬 X2V-AI-Video-Skill — 免费 AI 图像与视频 Skill
+# 🎬 X2V-AI-Images-Videos-Skill — 免费 AI 图像与视频 Skill
 
 **English:** [README.md](README.md)
 
@@ -21,8 +21,8 @@
 
 | 任务 | model_cls |
 |------|-----------|
-| **t2i**（文生图） | `Qwen-Image-Edit-2509`、`Qwen-Image-2512` |
-| **i2i**（图像编辑） | `Qwen-Image-Edit-2509`、`Qwen-Image-Edit-2511` |
+| **t2i**（文生图） | `Qwen-Image-2512` |
+| **i2i**（图像编辑） | `Qwen-Image-Edit-2511` |
 | **t2v**（文生视频） | `Wan2.2_T2V_A14B_distilled` |
 | **i2v**（图生视频） | `Wan2.2_I2V_A14B_distilled` |
 | **s2v**（数字人） | `SekoTalk` |
@@ -96,6 +96,16 @@ cd lightx2v_ai_generation_skills
 | 🎬 **数字人视频** | 场景图 + TTS → s2v → 口播视频 | [digital-human-video.md](examples/digital-human-video.md) |
 | 🎥 **一句话生视频** | t2i/i2i → 一张关键图 → i2v → 短视频 | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
 | 💕 **虚拟男友/女友** | 人设 (SOUL.md) → 场景图 + TTS/s2v 或 i2v → 伴侣视频/语音；*OpenClaw 用户请先设定 bot 人格* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
+
+### 示例（虚拟男友 + 共创 AI 视频）
+
+![LightX2V 示例：虚拟男友视频、共创 AI 视频与功能总览](assets/readme-example-lightx2v.png)
+
+*左：虚拟男友视频（TTS + i2v/s2v）。中：按脚本制作的共创 AI 视频分镜。右：功能总览（t2i、i2i、t2v、i2v、s2v、flf2v、TTS、语音克隆）。*
+
+## ⚠️ 数据与隐私声明
+
+**您提交的所有数据（图像、音频、文本及生成结果）均不会用于二次训练或商业盈利，仅用于响应您的个人娱乐请求。** 此举旨在降低侵权风险，并回应部分用户对自家原创角色（OC）或素材被用于 AI 融图、训练等用途的顾虑。您对上传内容与生成结果享有相应权利，请仅将本服务用于个人创作与非商业用途。
 
 ## 🗑️ 卸载
 

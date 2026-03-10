@@ -37,10 +37,11 @@ Save the printed URL as **SCENE_IMAGE_URL** (or keep the local path if you used 
 
 ### 2. Voice (TTS)
 
-- Call `GET /api/v1/voices/list` to choose a `voice_type` (and its `resource_id`). v2.0 voices support `context_texts` for tone.
-- Call **TTS** with the script text, `voice_type`, `resource_id`; optional `context_texts` (e.g. “warm, friendly”). Write the response **directly to a file** (binary MP3); do not store in a shell variable.
+- Choose a `voice_type` (and its `resource_id`) from the voice list. **Recommended for digital human:** Male `zh_male_ruyayichen_saturn_bigtts`, Female `zh_female_vv_uranus_bigtts` (Vivi 2.0); both are v2.0 and support `context_texts` (voice instructions). These are suggestions only — **more voices** are available via `./scripts/tts_voice_list.sh` or `GET /api/v1/voices/list`; do not hardcode, pick from the list when the user wants a different voice.
+- Call **TTS** with the script text, `voice_type`, `resource_id`; optional `context_texts` (e.g. “warm, friendly”) for v2.0 voices. Write the response **directly to a file** (binary MP3); do not store in a shell variable.
 
 ```bash
+# Example with recommended female voice (Vivi 2.0); use tts_voice_list.sh to see all options
 ./scripts/tts_generate.sh "Hello, this is a test of the digital human." "zh_female_vv_uranus_bigtts" --output /tmp/dh_audio.mp3
 # Optional: --context-texts "warm and natural"
 ```
@@ -64,6 +65,7 @@ Return the final video URL (or download to `files/video/` and return the path). 
 ## Tips
 
 - **Scene prompt:** For i2i, include “保持人物一致性” / “keep character consistent” when editing a user image.
+- **TTS / voice:** Recommended for digital human: Male `zh_male_ruyayichen_saturn_bigtts`, Female `zh_female_vv_uranus_bigtts` (Vivi 2.0); both v2.0, support `context_texts`. More voices via `tts_voice_list.sh` or `/api/v1/voices/list` — do not hardcode.
 - **TTS:** Put only the spoken text in `text`; put tone/scene instructions in `context_texts` (v2.0 only). Use ellipses for pauses.
 - **Aspect ratio:** 9:16 is typical for portrait talking head.
 - **Large videos:** If the file is large, prefer returning the result **URL** instead of uploading the file (e.g. 16 MB message limit).

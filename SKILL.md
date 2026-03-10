@@ -254,7 +254,7 @@ Response is binary **audio/mpeg** (mp3). Save to a file (e.g. `--output out.mp3`
 
 Script uses env: `LIGHTX2V_CLOUD_URL` (or base URL), `LIGHTX2V_CLOUD_TOKEN` (optional). Optional args: `--context-texts` (scene/tone), `--emotion`, `--emotion-scale` (default 3), `--speech-rate`, `--loudness-rate`, `--pitch` (default 0).
 
-Recommended voices for digital human: Male `zh_male_ruyayichen_saturn_bigtts`, Female `zh_female_vv_uranus_bigtts` (Vivi 2.0); both v2.0 and support voice instructions.
+**Recommended voices for digital human / companion:** Male `zh_male_ruyayichen_saturn_bigtts`, Female `zh_female_vv_uranus_bigtts` (Vivi 2.0); both v2.0 and support `context_texts` (voice instructions). These are suggestions only — more voices are available via `tts_voice_list.sh` or `GET /api/v1/voices/list`; do not hardcode, choose from the list when needed.
 
 ---
 

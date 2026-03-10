@@ -1,4 +1,4 @@
-# 🎬 X2V-AI-Video-Skill — Free AI Image & Video Skill
+# 🎬 X2V-AI-Images-Videos-Skill — Free AI Image & Video Skill
 
 **中文说明:** [README_zh.md](README_zh.md)
 
@@ -21,8 +21,8 @@ Available via `GET /api/v1/model/list`. Use the `model_cls` value when submittin
 
 | Task | model_cls |
 |------|-----------|
-| **t2i** (text-to-image) | `Qwen-Image-Edit-2509`, `Qwen-Image-2512` |
-| **i2i** (image edit) | `Qwen-Image-Edit-2509`, `Qwen-Image-Edit-2511` |
+| **t2i** (text-to-image) |  `Qwen-Image-2512` |
+| **i2i** (image edit) | `Qwen-Image-Edit-2511` |
 | **t2v** (text-to-video) | `Wan2.2_T2V_A14B_distilled` |
 | **i2v** (image-to-video) | `Wan2.2_I2V_A14B_distilled` |
 | **s2v** (digital human) | `SekoTalk` |
@@ -96,6 +96,16 @@ Step-by-step guides for multi-step workflows (e.g. digital-human-video, storyboa
 | 🎬 **Digital human video** | Scene image + TTS → s2v → talking-head video | [digital-human-video.md](examples/digital-human-video.md) |
 | 🎥 **One-sentence to video** | t2i/i2i → one key image → i2v → short video | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
 | 💕 **Virtual boyfriend/girlfriend** | Persona (SOUL.md) → scene image + TTS/s2v or i2v → companion video or voice; *OpenClaw: set bot personality first* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
+
+### Example (virtual boyfriend + AI co-creation)
+
+![LightX2V example: virtual boyfriend video, co-creation video, and feature overview](assets/readme-example-lightx2v.png)
+
+*Left: virtual boyfriend video (TTS + i2v/s2v). Middle: AI co-creation video from script. Right: feature overview (t2i, i2i, t2v, i2v, s2v, flf2v, TTS, voice clone).*
+
+## ⚠️ Data & privacy
+
+**All data you submit (images, audio, text, generated outputs) is not used for secondary model training or commercial profit.** It is only used to serve your requests for personal entertainment. This is to reduce infringement risk and to address concerns that your original characters (OCs) or assets might be used for AI blending or training elsewhere. You keep ownership of your inputs and outputs; use the service for your own creative and non-commercial purposes.
 
 ## 🗑️ Uninstall
 
