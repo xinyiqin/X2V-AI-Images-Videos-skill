@@ -62,7 +62,7 @@ Do NOT assume any endpoint works without authentication.
 | List models | `GET /api/v1/model/list` | Get available `task` + `model_cls` combinations |
 | Submit task | `POST /api/v1/task/submit` | Submit a job; returns `task_id` |
 | Query status | `GET /api/v1/task/query?task_id=<id>` | Poll until `status` is SUCCEED / FAILED / CANCELLED |
-| Get result | `GET /api/v1/task/result_url?task_id=<id>&name=<name>` | Get download URL; name is `output_image` (t2i/i2i) or `output_video` (t2v/i2v/s2v/animate) |
+| Get result | `GET /api/v1/task/result_url?task_id=<id>&name=<name>` | Get download URL; name is `output_image` (t2i/i2i) or `output_video` (t2v/i2v/s2v/flf2v/animate) |
 | TTS voices | `GET /api/v1/voices/list` | List preset voices (optional `?version=`) |
 | TTS generate | `POST /api/v1/tts/generate` | JSON: text, voice_type, context_texts?, emotion?, emotion_scale?, speech_rate?, pitch?, loudness_rate?, resource_id; returns audio/mpeg (mp3) |
 | Voice clone | `POST /api/v1/voice/clone` | multipart: file (audio), optional text; returns speaker_id |
@@ -116,7 +116,7 @@ For local files: read file, base64-encode, and set `{ "type": "base64", "data": 
 **Task progress checklist (image/video tasks):**
 
 ```
-- [ ] List models and choose model_cls for the requested task (t2i, i2i, t2v, i2v, s2v, animate)
+- [ ] List models and choose model_cls for the requested task (t2i, i2i, t2v, i2v, s2v, flf2v, animate)
 - [ ] Submit task with correct payload; record task_id from response
 - [ ] Poll task/query every 5–10 s until SUCCEED, FAILED, or CANCELLED
 - [ ] On success, get result_url (name=output_image or output_video) and return URL to user

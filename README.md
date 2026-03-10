@@ -101,7 +101,7 @@ Step-by-step guides for multi-step workflows (e.g. digital-human-video, storyboa
 | 🎞️ **First–last frame (flf2v)** | First frame (t2i or user image) → i2i last frame → flf2v → short transition video | [first-last-frame-video.md](examples/first-last-frame-video.md) |
 | 🎬 **Digital human video** | Scene image + TTS → s2v → talking-head video | [digital-human-video.md](examples/digital-human-video.md) |
 | 🎥 **One-sentence to video** | t2i/i2i → one key image → i2v → short video | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
-| 💕 **Virtual boyfriend/girlfriend** | Persona (SOUL.md) → scene image + TTS/s2v or i2v → companion video or voice; *OpenClaw: set bot personality first* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
+| 💕 **Virtual boyfriend/girlfriend** | Persona (SOUL.md) → avatar → scene image + TTS/s2v or i2v → companion video or voice; *OpenClaw: set bot personality first* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
 
 ## ⚠️ Data & privacy
 
