@@ -2,7 +2,8 @@
 
 **中文说明:** [README_zh.md](README_zh.md)
 
-> **Free** AI image, video, TTS, and voice clone — use it for **full AI comic drama**, **AI MV**, **AI digital-human voiceover**, or deploy on [OpenClaw](https://openclaw.ai) as a **virtual boyfriend/girlfriend**. Powered by the open-source [LightX2V](https://github.com/ModelTC/LightX2V) free API; try the cloud at [x2v.light-ai.top](https://x2v.light-ai.top).
+> **Free** AI image, video, TTS, and voice clone — use it for **full AI comic drama**, **AI MV**, **AI digital-human voiceover**, or deploy on [OpenClaw](https://openclaw.ai) as a **virtual boyfriend/girlfriend**. Powered by the open-source [LightX2V](https://github.com/ModelTC/LightX2V) free API; try the cloud at [x2v.light-ai.top](https://x2v.light-ai.top).  
+> 👋 **Join our WeChat group! LightX2V Rotbot WeChat ID: `random42seed`**
 
 ## ✨ Features
 
@@ -10,6 +11,7 @@
 - 🎞️ **Video** — Text-to-video (t2v), image-to-video (i2v), digital human / talking head (s2v), first–last frame (flf2v)
 - 🎤 **TTS** — Text-to-speech with preset voices
 - 🎙️ **Voice clone** — Clone a voice from audio, then synthesize with it
+- 💕 **Virtual boyfriend/girlfriend (end-to-end complex case)** — Persona (SOUL.md) → avatar (`avatar/`) → scene image (i2i/t2i) → TTS/talking video (s2v) or silent motion (i2v); see [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md)
 
 Use this skill for the **cloud** API. For restricted content or local unlimited inference, self-host by deploying models using [LightX2V](https://github.com/ModelTC/LightX2V) locally and running it as a service.
 
@@ -93,6 +95,7 @@ Step-by-step guides for multi-step workflows (e.g. digital-human-video, storyboa
 | 🎞️ **First–last frame (flf2v)** | First frame (t2i or user image) → i2i last frame → flf2v → short transition video | [first-last-frame-video.md](examples/first-last-frame-video.md) |
 | 🎬 **Digital human video** | Scene image + TTS → s2v → talking-head video | [digital-human-video.md](examples/digital-human-video.md) |
 | 🎥 **One-sentence to video** | t2i/i2i → one key image → i2v → short video | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
+| 💕 **Virtual boyfriend/girlfriend** | Persona (SOUL.md) → scene image + TTS/s2v or i2v → companion video or voice; *OpenClaw: set bot personality first* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
 
 ## 🗑️ Uninstall
 

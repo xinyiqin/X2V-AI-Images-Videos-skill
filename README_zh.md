@@ -3,6 +3,7 @@
 **English:** [README.md](README.md)
 
 > **免费** AI 图像、视频、TTS 与语音克隆 — 可用来做 **完整 AI 漫剧**、**AI MV**、**AI 数字人口播**，或部署到 [OpenClaw](https://openclaw.ai) 上当 **虚拟男友/女友**。基于开源 [LightX2V](https://github.com/ModelTC/LightX2V) 的免费 API，云端即用：[x2v.light-ai.top](https://x2v.light-ai.top)。
+> 👋 加入我们的微信群！LightX2V 机器人微信号：random42seed
 
 ## ✨ 功能
 
@@ -10,6 +11,7 @@
 - 🎞️ **视频** — 文生视频 (t2v)、图生视频 (i2v)、数字人/口播 (s2v)、首尾帧视频 (flf2v)
 - 🎤 **TTS** — 预设音色文本转语音
 - 🎙️ **语音克隆** — 从音频克隆声音，再用该声音合成
+- 💕 **虚拟男友/女友（端到端复杂案例）** — 人设 (SOUL.md) → 角色图 (avatar/) → 场景图 (i2i/t2i) → TTS/口播 (s2v) 或无声动作 (i2v)，见 [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md)
 
 本技能使用**LightX2V 云端** API。需要更多模型或本地推理请自行通过LightX2V框架部署 [LightX2V](https://github.com/ModelTC/LightX2V) 并起服务后使用。
 
@@ -86,13 +88,14 @@ cd lightx2v_ai_generation_skills
 
 ## 📚 复杂案例示例
 
-多步流程的步骤说明（可参考 digital-human-video、storyboard-video、my_boyfriend 等技能）：
+多步流程的步骤说明：
 
 | 示例 | 说明 | 文档 |
 |------|------|------|
 | 🎞️ **首尾帧视频 (flf2v)** | 首帧（t2i 或用户图）→ i2i 尾帧 → flf2v → 短视频 | [first-last-frame-video.md](examples/first-last-frame-video.md) |
 | 🎬 **数字人视频** | 场景图 + TTS → s2v → 口播视频 | [digital-human-video.md](examples/digital-human-video.md) |
 | 🎥 **一句话生视频** | t2i/i2i → 一张关键图 → i2v → 短视频 | [one-sentence-to-video.md](examples/one-sentence-to-video.md) |
+| 💕 **虚拟男友/女友** | 人设 (SOUL.md) → 场景图 + TTS/s2v 或 i2v → 伴侣视频/语音；*OpenClaw 用户请先设定 bot 人格* | [virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) |
 
 ## 🗑️ 卸载
 

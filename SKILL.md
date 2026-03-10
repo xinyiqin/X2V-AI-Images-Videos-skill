@@ -343,8 +343,9 @@ Validate: `[ -s audio.mp3 ] && head -c 10 audio.mp3 | grep -q ID3`.
 
 ## Additional resources
 
-For multi-step workflows (first–last frame video, digital human video, one-sentence to video), see the **examples** in the skill directory:
+For multi-step workflows (first–last frame video, digital human video, one-sentence to video, virtual companion), see the **examples** in the skill directory:
 
 - [examples/first-last-frame-video.md](examples/first-last-frame-video.md) — flf2v: first frame → i2i last frame → flf2v
 - [examples/digital-human-video.md](examples/digital-human-video.md) — s2v: scene image + TTS → talking-head video
 - [examples/one-sentence-to-video.md](examples/one-sentence-to-video.md) — t2i/i2i → i2v: one key image → short video
+- [examples/virtual-boyfriend-video.md](examples/virtual-boyfriend-video.md) — virtual boyfriend/girlfriend: persona (SOUL.md); prompt user to upload character image, save to `avatar/`, prefer existing avatar for i2i; then scene + TTS/s2v or i2v
